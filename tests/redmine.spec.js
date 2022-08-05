@@ -1,63 +1,107 @@
 const { test, expect } = require('@playwright/test');
+const { LoginPage } = require('../pageObjects/loginPage');
+const { LostPasswordPage } = require('../pageObjects/lostPasswordPage');
+const { MainPage } = require('../pageObjects/mainPage');
+const { SearchPage } = require('../pageObjects/searchPage');
+const { UserMainPage } = require('../pageObjects/userMainPage');
 
- 
+
+
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('https://www.redmine.org/');
-});
-
-test.describe ('Сlickability and display accuracy header  menu  ', () =>{
-    test ('click on Overview link', async({page}) =>{
-        await page.locator('.overview').click()
-        await expect(page).toHaveURL(/.*redmine/);
+  const mainPage = new MainPage(page);
+  await mainPage.goto()
+   });
 
   
-        await page.locator('.download').click()
+
+  test.describe ('Check clickability of header menu', () =>{
+       
+    test ('Click  on links of header menu', async({page}) =>{
+        const mainPage = new MainPage(page);
+        await mainPage.clickOverviewMenuLink()
+        await expect(page).toHaveURL(/.*redmine/);  //playwrite нет функции toBecklickable, сделал так
+       
+        await mainPage.clickDownloadMenuLink()
         await expect(page).toHaveURL(/.*Download/);
 
-    
-        await page.locator('.activity').click()
+        await mainPage.clickActivityMenuLink()
         await expect(page).toHaveURL(/.*activity/);
-    
-        await page.locator('.roadmap').click()
+
+        await mainPage.clickRoadmapMenuLink()
         await expect(page).toHaveURL(/.*roadmap/);
-        await page.locator('.issues').click()
+
+        await mainPage.clickIssuesMenuLink()
         await expect(page).toHaveURL(/.*issues/);
-   
-        await page.locator('.news').click()
+
+        await mainPage.clickNewsMenuLink()
         await expect(page).toHaveURL(/.*news/);
-    
-        await page.locator('#main-menu >> text=Wiki').click()
+
+        await mainPage.clickWikiloadMenuLink()
         await expect(page).toHaveURL(/.*wiki/);
-    
-        await page.locator('.boards').click()
+
+        await mainPage.clickBoardsMenuLink()
         await expect(page).toHaveURL(/.*boards/);
-   
-   
-        await page.locator('.repository').click()
+
+        await mainPage.clickRepositoryMenuLink()
         await expect(page).toHaveURL(/.*repository/);
     })
     
 })
 test.describe ('Search feature with valid credentials  ', () =>{
-  test ('Fill in "Search" field: "wiki"', async({page}) =>{
-    await page.locator('#q').click()
-    await page.locator('#q').fill('wiki')
-    await page.locator('input[name="q"]').press('Enter')
-    await expect(page.locator('#q')).toHaveValue("wiki");
-    await expect(page.locator('//*[@id="search-input"]')).toHaveValue("wiki");
+    test ('Fill in "Search" field: "wiki"', async({page}) =>{
+    const mainPage = new MainPage(page);
+    const searhPage = new SearchPage(page)
+    await mainPage.searchInputField.click()
+    await mainPage.searchInputField.fill('wiki')
+    await mainPage.searchInputField.press('Enter')
+    await expect(mainPage.searchInputField).toHaveValue("wiki");
+    await expect(searhPage.searchMainInputField).toHaveValue("wiki");
 
-  })
+    })
   
 })
 test.describe ('Search feature with invalid credentials  ', () =>{
   test ('Fill in "Search" field: "***###"', async({page}) =>{
-    await page.locator('#q').click()
-    await page.locator('#q').fill('***###')
-    await page.locator('input[name="q"]').press('Enter')
-    await expect(page.locator('#q')).toHaveValue("***###");
-    await expect(page.locator('//*[@id="search-input"]')).toHaveValue("***###");
-    await expect(page.locator('//body//div/h3')).toHaveText("Results (0)");
-//body//div/h3
+    const mainPage = new MainPage(page);
+    const searhPage = new SearchPage(page)
+    await mainPage.searchInputField.click()
+    await mainPage.searchInputField.fill('***###')
+    await mainPage.searchInputField.press('Enter')
+    await expect(mainPage.searchInputField).toHaveValue("***###");
+    await expect(searhPage.searchMainInputField).toHaveValue("***###");
+    await expect(searhPage.resultsCountLabele).toHaveText("Results (0)");
+
   })
 })
+test.describe ('Password recovery', () =>{  
+  test ('Submiting to recover password', async({page}) =>{
+    const mainPage = new MainPage(page);
+    const loginPage = new LoginPage(page)
+    const lostPasswordPage= new LostPasswordPage(page)
+    await mainPage.loginBtn.click()     
+    await loginPage.lostPasswordBtn.click()   
+    await lostPasswordPage.loginInputField.fill("v@mailsac.com")  
+    await lostPasswordPage.submitBtn.click()
+    await expect(lostPasswordPage.lableFlashNotice).toHaveText("An email with instructions to choose a new password has been sent to you.");       
+  })
+
+
+})
+  test.describe ('Sighn in', () =>{  
+    test ('Filling   inputs fields', async({page}) =>{
+      const mainPage = new MainPage(page);
+      const loginPage = new LoginPage(page)
+      const userMainPage = new UserMainPage(page)
+      await mainPage.loginBtn.click()
+      await loginPage.loginInputField.click()
+      await loginPage.loginInputField.fill("testUserqwerty1")
+      await loginPage.loginInputField.press('Enter')
+      await loginPage.passwordInputField.fill("test")
+      await loginPage.submitBtn.click()
+      await expect(userMainPage.userNameLog).toHaveText("testUserqwerty1");       
+  })
+
+      
+  })
+
