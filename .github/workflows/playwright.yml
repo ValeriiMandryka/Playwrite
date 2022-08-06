@@ -36,4 +36,10 @@ jobs:
       with:
           name: allure-results
           path: ./allure-results
+    - name: Publishing Allure artifact to Github Actions
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+          name: allure-report
+          path: allure-report        
         
