@@ -5,15 +5,22 @@
 ## Install 
 in terminal enter
 ```
-git clone https://github.com/Honest-Foxy/redmine-playwright-allure.git
-npm install 
+git clone https://github.com/ValeriiMandryka/playwrite.git
+npm ci 
 ```
-## Run
+## Run tests
 ```
-nmx playwright test
+npm run test  
 ```
+## Run tests in head mde
+```
+npm run testhead  
+```
+
+
+
 ## Report generation and open
 ```
-npx allure generate allure-results --clean
-npx allure open allure-report
+npm run allure-generate
+npm run allure--serve
 ```
