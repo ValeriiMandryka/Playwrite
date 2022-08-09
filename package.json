@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "testreport": "npx playwright test",
-    "testhead": "npx playwright test  --headed",
+    "testhead": "npx playwright test  --headed --reporter=line,allure-playwright",
     "test": "npx playwright test --reporter=line,allure-playwright",
     "allure-generate": "allure generate --clean",
     "allure-serve": "allure serve"
@@ -15,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.24.2",
+    "allure-commandline": "^2.18.1",
     "allure-playwright": "^2.0.0-beta.18"
   }
 }
