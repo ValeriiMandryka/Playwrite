@@ -2,24 +2,26 @@
 ## Smoke testing Redmine 
 5 test cases: valid, invalad registration and sign in, navigation menu checking
 
-## Install 
+##1. Install 
 in terminal enter
 ```
 git clone https://github.com/ValeriiMandryka/playwrite.git
 npm ci 
 ```
-## Run tests
+##2. Run tests
 ```
 npm run test  
 ```
-## Run tests in head mde
+OR
+
+## Run tests in head mode
 ```
 npm run testhead  
 ```
 
 
 
-## Report generation and open
+##3. Report generation and open
 ```
 npm run allure-generate
 npm run allure--serve
