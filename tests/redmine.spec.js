@@ -8,19 +8,20 @@ const { UserMainPage } = require('../pageObjects/userMainPage');
 
 
 
-test.beforeEach(async ({ page }) => {
-  const mainPage = new MainPage(page);
-  await mainPage.goto()
-   });
+  test.beforeEach(async ({ page }) => {
+       const mainPage = new MainPage(page);
+       await mainPage.openRedmine()
+       });
 
   
 
-  test.describe ('Check clickability of header menu', () =>{
+  test.describe ('Smoke test', () =>{
        
-    test ('Click  on links of header menu', async({page}) =>{
+    test ('Clickability  of headers menu links', async({page}) =>{
         const mainPage = new MainPage(page);
+
         await mainPage.clickOverviewMenuLink()
-        await expect(page).toHaveURL(/.*redmine/);  //playwrite нет функции toBecklickable, сделал так
+        await expect(page).toHaveURL(/.*redmine/);  
        
         await mainPage.clickDownloadMenuLink()
         await expect(page).toHaveURL(/.*Download/);
@@ -47,21 +48,20 @@ test.beforeEach(async ({ page }) => {
         await expect(page).toHaveURL(/.*repository/);
     })
     
-})
-test.describe ('Search feature with valid credentials  ', () =>{
-    test ('Fill in "Search" field: "wiki"', async({page}) =>{
-    const mainPage = new MainPage(page);
-    const searhPage = new SearchPage(page)
-    await mainPage.searchInputField.click()
-    await mainPage.searchInputField.fill('wiki')
-    await mainPage.searchInputField.press('Enter')
-    await expect(mainPage.searchInputField).toHaveValue("wiki");
-    await expect(searhPage.searchMainInputField).toHaveValue("wiki");
+
+    test ('Check function search', async({page}) =>{
+        const mainPage = new MainPage(page);
+        const searhPage = new SearchPage(page)
+        await mainPage.clickSearchInputField()
+        await mainPage.searchInputField.fill('wiki')
+        await mainPage.searchInputField.press('Enter')
+        await expect(mainPage.searchInputField).toHaveValue("wiki");
+        await expect(searhPage.searchMainInputField).toHaveValue("wiki");
 
     })
   
-})
-test.describe ('Search feature with invalid credentials  ', () =>{
+
+
   test ('Fill in "Search" field: "***###"', async({page}) =>{
     const mainPage = new MainPage(page);
     const searhPage = new SearchPage(page)
@@ -73,8 +73,8 @@ test.describe ('Search feature with invalid credentials  ', () =>{
     await expect(searhPage.resultsCountLabele).toHaveText("Results (0)");
 
   })
-})
-test.describe ('Password recovery', () =>{  
+
+ 
   test ('Submiting to recover password', async({page}) =>{
     const mainPage = new MainPage(page);
     const loginPage = new LoginPage(page)
@@ -87,8 +87,8 @@ test.describe ('Password recovery', () =>{
   })
 
 
-})
-  test.describe ('Sighn in', () =>{  
+
+  
     test ('Filling   inputs fields', async({page}) =>{
       const mainPage = new MainPage(page);
       const loginPage = new LoginPage(page)

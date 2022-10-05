@@ -1,40 +1,49 @@
-const { expect } = require('@playwright/test');
-exports.MainPage = class MainPage {
+const { GeneralPage } = require('./generalPage');
+//Header menuLinks
+const overviewMenuLink = '.overview'
+const downloadMenuLink = '.download'
+const activityMenuLink = '.activity'
+const roadmapMenuLink = '.roadmap'
+const issuesMenuLink = '.issues'
+const newsMenuLink = '.news'
+const wikiMenuLink = '#main-menu >> text=Wiki'
+const boardsMenuLink = '.boards'
+const repositoryMenuLink = '.repository'
+
+const searchInputField = '#q'
+
+const loginBtn = '.login'
+
+class MainPage extends GeneralPage {
+ 
+constructor(page) {
+    super(page);
+	this.page = page;
+    }
+    //function openMainPage taken from generalPage
+ async openRedmine() {await super.openURL('https://www.redmine.org/')}   
+    
+     //functions "click" on header menu Links
+ async clickOverviewMenuLink() {await super.clickElement(overviewMenuLink)}
+ async clickDownloadMenuLink() {await super.clickElement(downloadMenuLink)}
+ async clickActivityMenuLink() {await super.clickElement(activityMenuLink)}
+ async clickRoadmapMenuLink() {await super.clickElement(roadmapMenuLink)}
+ async clickIssuesMenuLink() {await super.clickElement(issuesMenuLink)}
+ async clickNewsMenuLink() {await super.clickElement(newsMenuLink)}
+ async clickWikiloadMenuLink() {await super.clickElement(wikiMenuLink)}
+ async clickBoardsMenuLink() {await super.clickElement(boardsMenuLink)}
+ async clickRepositoryMenuLink() {await super.clickElement(repositoryMenuLink)}
+       //functions "click" on Search button
+
+ async clickSearchInputField() {await super.clickElement(searchInputField)}
+}
+module.exports = { MainPage };
+
+   
+        
+
+        
 
     
+       
 
-    constructor(page) {
-        this.page = page;
-        //Header menuLinks
-        this.overviewMenuLink = page.locator('.overview')
-        this.downloadMenuLink = page.locator('.download')
-        this.activityMenuLink = page.locator('.activity')
-        this.roadmapMenuLink = page.locator('.roadmap')
-        this.issuesMenuLink = page.locator('.issues')
-        this.newsMenuLink = page.locator('.news')
-        this.wikiMenuLink = page.locator('#main-menu >> text=Wiki')
-        this.boardsMenuLink = page.locator('.boards')
-        this.repositoryMenuLink = page.locator('.repository')
-        
-        this.searchInputField =page.locator('#q')
-
-        this.loginBtn =page.locator('.login')
-
-        
-
-    }
-        //function openMainPage
-    async goto() { await this.page.goto('https://www.redmine.org/');}
-        //functions "click" on heade menu Links
-    async clickOverviewMenuLink() {await this.overviewMenuLink.click()}
-    async clickDownloadMenuLink() {await this.downloadMenuLink.click()}
-    async clickActivityMenuLink() {await this.activityMenuLink.click()}
-    async clickRoadmapMenuLink() {await this.roadmapMenuLink.click()}
-    async clickIssuesMenuLink() {await this.issuesMenuLink.click()}
-    async clickNewsMenuLink() {await this.newsMenuLink.click()}
-    async clickWikiloadMenuLink() {await this.wikiMenuLink.click()}
-    async clickBoardsMenuLink() {await this.boardsMenuLink.click()}
-    async clickRepositoryMenuLink() {await this.repositoryMenuLink.click()}
-
-
-}
