@@ -11,7 +11,8 @@ const wikiMenuLink = '#main-menu >> text=Wiki'
 const boardsMenuLink = '.boards'
 const repositoryMenuLink = '.repository'
 
-
+const searchInputField = '#q'
+const loginBtn = '.login'
 
 class MainPage extends CommandsPage {
  
@@ -32,6 +33,8 @@ constructor(page) {
     WikiMenuLink: () => wikiMenuLink,
     BoardsMenuLink: () => boardsMenuLink, 
     RepositoryMenuLink: () => repositoryMenuLink,
+    SearchInputField: () => searchInputField,
+    LoginBtn: () => loginBtn,
 
 } 
     

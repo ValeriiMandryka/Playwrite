@@ -25,7 +25,11 @@ class CommandsPage {
 
     async press(element, text) {
       await (await this.findElement(element)).press(text);
- }
+    }
+    async pressKeybordBtn(element,keybordKey) {
+      await (await this.findElement(element)).press(keybordKey)
+    }
+ 
 
 
    
