@@ -1,10 +1,19 @@
+const { GeneralPage } = require("./generalPage");
+
+
+
+const searchMainInputField = '//*[@id="search-input"]'
+const resultsCountLabele = '//body//div/h3'
+
 class SearchPage extends GeneralPage {
  
     constructor(page) {
         super(page);
         this.page = page;
         }
-        //function openMainPage taken from generalPage
-    
+       
+    async getsSearchMainInputField() {return await super.findElement(searchMainInputField)}
+    async getsResultsCountLabele() {return await super.findElement(resultsCountLabele)}
+
     }
     module.exports = { SearchPage };

@@ -36,7 +36,14 @@ constructor(page) {
        //functions "click" on Search button
 
  async clickSearchInputField() {await super.clickElement(searchInputField)}
+ async fillSearchInputField(text) {await super.setValue(searchInputField,text)}
+ async pressEnterCommandOnSearchInputField() {await super.pressKeyCommand(searchInputField, 'Enter')}
+
+ async clickLoginBtn() {await super.clickElement(loginBtn)}
+
+ async getSearchInputField() {return await super.findElement(searchInputField)}
 }
+
 module.exports = { MainPage };
 
    

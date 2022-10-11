@@ -1,10 +1,16 @@
 const { test, expect } = require('@playwright/test');
-
 const { MainPage } = require('../pageObjects/mainPage');
+const { SearchPage } = require ('../pageObjects/searchPage');
+const { LoginPage } = require ('../pageObjects/loginPage');
+const { LostPasswordPage } = require ('../pageObjects/lostPasswordPage');
+const { UserMainPage } = require ('../pageObjects/userMainPage')
 
 
-
-
+const validTextForSearch = 'wiki'
+const invalidTextForSearch = '***###'
+const email = 'v@mailsac.com'
+const userName = 'testUserqwerty1'
+const password = 'test'
 
   test.beforeEach(async ({ page }) => {
        const mainPage = new MainPage(page);
@@ -15,7 +21,7 @@ const { MainPage } = require('../pageObjects/mainPage');
 
   test.describe ('Smoke test', () =>{
        
-    test ('Clickability  of headers menu links', async({page}) =>{
+    test ('Check Clickability  of headers menu links', async({page}) =>{
       const mainPage = new MainPage(page);
 
       await mainPage.clickOverviewMenuLink()
@@ -47,55 +53,60 @@ const { MainPage } = require('../pageObjects/mainPage');
     })
     
     
-    test ('Fill in "Search" field: "wiki"', async({page}) =>{
+    test ('Check results with valid inputed data', async({page}) =>{
       const mainPage = new MainPage(page);
       const searhPage = new SearchPage(page)
-      await mainPage.searchInputField.click()
-      await mainPage.searchInputField.fill('wiki')
-      await mainPage.searchInputField.press('Enter')
-      await expect(mainPage.searchInputField).toHaveValue("wiki");
-      await expect(searhPage.searchMainInputField).toHaveValue("wiki");
+
+      await mainPage.clickSearchInputField()
+      await mainPage.fillSearchInputField(validTextForSearch)
+      await mainPage.pressEnterCommandOnSearchInputField()
+      await expect(await mainPage.getSearchInputField()).toHaveValue(validTextForSearch);
+      await expect(await searhPage.getsSearchMainInputField()).toHaveValue(validTextForSearch);
   
     })
     
   
   
-    test ('Fill in "Search" field: "***###"', async({page}) =>{
+    test ('Check results with invalid inputed data', async({page}) =>{
       const mainPage = new MainPage(page);
       const searhPage = new SearchPage(page)
-      await mainPage.searchInputField.click()
-      await mainPage.searchInputField.fill('***###')
-      await mainPage.searchInputField.press('Enter')
-      await expect(mainPage.searchInputField).toHaveValue("***###");
-      await expect(searhPage.searchMainInputField).toHaveValue("***###");
-      await expect(searhPage.resultsCountLabele).toHaveText("Results (0)");
+
+      await mainPage.clickSearchInputField()
+      await mainPage.fillSearchInputField(invalidTextForSearch)
+      await mainPage.pressEnterCommandOnSearchInputField()
+      await expect(await mainPage.getSearchInputField()).toHaveValue(invalidTextForSearch);
+      await expect(await searhPage.getsSearchMainInputField()).toHaveValue(invalidTextForSearch);
+      await expect(await searhPage.getsResultsCountLabele()).toHaveText("Results (0)");
   
     })
   
-    test ('Submiting to recover password', async({page}) =>{
+    test ('Check ability  to recover password', async({page}) =>{
       const mainPage = new MainPage(page);
       const loginPage = new LoginPage(page)
       const lostPasswordPage= new LostPasswordPage(page)
-      await mainPage.loginBtn.click()     
-      await loginPage.lostPasswordBtn.click()   
-      await lostPasswordPage.loginInputField.fill("v@mailsac.com")  
-      await lostPasswordPage.submitBtn.click()
-      await expect(lostPasswordPage.lableFlashNotice).toHaveText("An email with instructions to choose a new password has been sent to you.");       
+
+      await mainPage.clickLoginBtn()
+      await loginPage.clickLostPasswordBtn()
+      await lostPasswordPage.setEmailIntoLoginInputField(email)
+      await lostPasswordPage.clickSubmitBtn()
+      await expect( await lostPasswordPage.getLableFlashNotice()).toHaveText("An email with instructions to choose a new password has been sent to you.");       
     })
   
   
  
-    test ('Filling   inputs fields', async({page}) =>{
+    test ('Check ability to Log in with valid credantials', async({page}) =>{
       const mainPage = new MainPage(page);
       const loginPage = new LoginPage(page)
       const userMainPage = new UserMainPage(page)
-      await mainPage.loginBtn.click()
-      await loginPage.loginInputField.click()
-      await loginPage.loginInputField.fill("testUserqwerty1")
-      await loginPage.loginInputField.press('Enter')
-      await loginPage.passwordInputField.fill("test")
-      await loginPage.submitBtn.click()
-      await expect(userMainPage.userNameLog).toHaveText("testUserqwerty1");       
+
+      await mainPage.clickLoginBtn()
+      await loginPage.clickLoginInputField()
+      await loginPage.setUserName(userName)
+      await loginPage.clickPasswordInputField()
+      await loginPage.setPassword(password)
+      await loginPage.clickSubmitBtn()
+      await page.waitForLoadState()
+      await expect(await userMainPage.getUserNameLog()).toHaveText(userName);       
     })
     
   })

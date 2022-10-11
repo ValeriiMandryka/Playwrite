@@ -23,8 +23,10 @@ class GeneralPage {
          await (await this.findElement(element)).fill(text);
     }
 
-    async press(element, text) {
+    async pressKeyCommand(element, text) {
       await (await this.findElement(element)).press(text);
+
+  
  }
 
 
