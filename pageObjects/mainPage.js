@@ -1,4 +1,5 @@
-const { GeneralPage } = require('./generalPage');
+const { CommandsPage } = require('./commandsPage');
+
 //Header menuLinks
 const overviewMenuLink = '.overview'
 const downloadMenuLink = '.download'
@@ -10,11 +11,9 @@ const wikiMenuLink = '#main-menu >> text=Wiki'
 const boardsMenuLink = '.boards'
 const repositoryMenuLink = '.repository'
 
-const searchInputField = '#q'
 
-const loginBtn = '.login'
 
-class MainPage extends GeneralPage {
+class MainPage extends CommandsPage {
  
 constructor(page) {
     super(page);
@@ -22,20 +21,20 @@ constructor(page) {
     }
     //function openMainPage taken from generalPage
  async openRedmine() {await super.openURL('https://www.redmine.org/')}   
-    
-     //functions "click" on header menu Links
- async clickOverviewMenuLink() {await super.clickElement(overviewMenuLink)}
- async clickDownloadMenuLink() {await super.clickElement(downloadMenuLink)}
- async clickActivityMenuLink() {await super.clickElement(activityMenuLink)}
- async clickRoadmapMenuLink() {await super.clickElement(roadmapMenuLink)}
- async clickIssuesMenuLink() {await super.clickElement(issuesMenuLink)}
- async clickNewsMenuLink() {await super.clickElement(newsMenuLink)}
- async clickWikiloadMenuLink() {await super.clickElement(wikiMenuLink)}
- async clickBoardsMenuLink() {await super.clickElement(boardsMenuLink)}
- async clickRepositoryMenuLink() {await super.clickElement(repositoryMenuLink)}
-       //functions "click" on Search button
+ 
+ elements={
+    OverviewMenuLink: () => overviewMenuLink,
+    DownloadMenuLink: () => downloadMenuLink,
+    ActivityMenuLink: () => activityMenuLink,
+    RoadmapMenuLink: () => roadmapMenuLink, 
+    IssuesMenuLink: () => issuesMenuLink,
+    NewsMenuLink: () => newsMenuLink,
+    WikiMenuLink: () => wikiMenuLink,
+    BoardsMenuLink: () => boardsMenuLink, 
+    RepositoryMenuLink: () => repositoryMenuLink,
 
- async clickSearchInputField() {await super.clickElement(searchInputField)}
+} 
+    
 }
 module.exports = { MainPage };
 

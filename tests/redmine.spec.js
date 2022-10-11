@@ -18,31 +18,40 @@ const { MainPage } = require('../pageObjects/mainPage');
     test ('Clickability  of headers menu links', async({page}) =>{
         const mainPage = new MainPage(page);
 
-        await mainPage.clickOverviewMenuLink()
+        await mainPage.clickElement(mainPage.elements.OverviewMenuLink())
+        //await mainPage.clickOverviewMenuLink()
         await expect(page).toHaveURL(/.*redmine/);  
        
-        await mainPage.clickDownloadMenuLink()
+        await mainPage.clickElement(mainPage.elements.DownloadMenuLink())
+        //await mainPage.clickDownloadMenuLink()
         await expect(page).toHaveURL(/.*Download/);
 
-        await mainPage.clickActivityMenuLink()
+        await mainPage.clickElement(mainPage.elements.ActivityMenuLink())
+        //await mainPage.clickActivityMenuLink()
         await expect(page).toHaveURL(/.*activity/);
 
-        await mainPage.clickRoadmapMenuLink()
+        await mainPage.clickElement(mainPage.elements.RoadmapMenuLink())
+        //await mainPage.clickRoadmapMenuLink()
         await expect(page).toHaveURL(/.*roadmap/);
 
-        await mainPage.clickIssuesMenuLink()
+        await mainPage.clickElement(mainPage.elements.IssuesMenuLink())
+        //await mainPage.clickIssuesMenuLink()
         await expect(page).toHaveURL(/.*issues/);
 
-        await mainPage.clickNewsMenuLink()
+        await mainPage.clickElement(mainPage.elements.NewsMenuLink())
+        //await mainPage.clickNewsMenuLink()
         await expect(page).toHaveURL(/.*news/);
 
-        await mainPage.clickWikiloadMenuLink()
+        await mainPage.clickElement(mainPage.elements.WikiMenuLink())
+        //await mainPage.clickWikiloadMenuLink()
         await expect(page).toHaveURL(/.*wiki/);
 
-        await mainPage.clickBoardsMenuLink()
+        await mainPage.clickElement(mainPage.elements.BoardsMenuLink())
+        //await mainPage.clickBoardsMenuLink()
         await expect(page).toHaveURL(/.*boards/);
 
-        await mainPage.clickRepositoryMenuLink()
+        await mainPage.clickElement(mainPage.elements.RepositoryMenuLink())
+        //await mainPage.clickRepositoryMenuLink()
         await expect(page).toHaveURL(/.*repository/);
     })
     

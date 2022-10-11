@@ -1,4 +1,4 @@
-class GeneralPage {
+class CommandsPage {
   /**
    * @param {import('playwright').Page} page 
    */
@@ -32,4 +32,4 @@ class GeneralPage {
     
 
 }
-module.exports = { GeneralPage };
+module.exports = { CommandsPage };
