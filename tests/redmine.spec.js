@@ -19,7 +19,6 @@ const { MainPage } = require('../pageObjects/mainPage');
         const mainPage = new MainPage(page);
 
         await mainPage.clickElement(mainPage.elements.OverviewMenuLink())
-        //await mainPage.clickOverviewMenuLink()
         await expect(page).toHaveURL(/.*redmine/);  
        
         await mainPage.clickElement(mainPage.elements.DownloadMenuLink())
