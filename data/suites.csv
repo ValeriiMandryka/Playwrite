@@ -1,7 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Oct 05 10:51:03 UTC 2022","Wed Oct 05 10:51:15 UTC 2022","12043","","tests/redmine.spec.js","Check clickability of header menu","","","Click  on links of header menu",""
-"passed","Wed Oct 05 10:51:15 UTC 2022","Wed Oct 05 10:51:18 UTC 2022","3458","","tests/redmine.spec.js","Search feature with valid credentials  ","","","Fill in ""Search"" field: ""wiki""",""
-"passed","Wed Oct 05 10:51:28 UTC 2022","Wed Oct 05 10:51:34 UTC 2022","6075","","tests/redmine.spec.js","Sighn in","","","Filling   inputs fields",""
-"passed","Wed Oct 05 10:51:18 UTC 2022","Wed Oct 05 10:51:21 UTC 2022","3127","","tests/redmine.spec.js","Search feature with invalid credentials  ","","","Fill in ""Search"" field: ""***###""",""
+"passed","Tue Oct 11 08:17:44 UTC 2022","Tue Oct 11 08:17:53 UTC 2022","9135","","tests/redmine.spec.js","Smoke test","","","Clickability  of headers menu links",""
 "passed","Fri Aug 05 14:30:45 UTC 2022","Fri Aug 05 14:31:09 UTC 2022","24846","chromium","redmine.spec.js","Check clickability of header menu","","","Click  on links of header menu",""
-"passed","Wed Oct 05 10:51:21 UTC 2022","Wed Oct 05 10:51:28 UTC 2022","6520","","tests/redmine.spec.js","Password recovery","","","Submiting to recover password",""
