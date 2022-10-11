@@ -28,20 +28,7 @@ class GeneralPage {
  }
 
 
-    // async randomValueGenerator(number = 7) {
-    // let chars = "abcdefghijklmnopqrstuvwxyz";
-    // let string = "";
-    // for (var ii = 0; ii < number; ii++) {
-    //   string += chars[Math.floor(Math.random() * chars.length)];
-    // }
-    // return string;
-    // }
-
-    // async getText(locator) {
-    //     return await this.page.innerText(locator);
-    // }
-
-    
+   
     
 
 }
