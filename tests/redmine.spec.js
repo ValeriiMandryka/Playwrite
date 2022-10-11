@@ -104,7 +104,7 @@ const password = 'test'
   
   
     
-      test.only  ('Check ability to Log in with valid credantials', async({page}) =>{
+      test ('Check ability to Log in with valid credantials', async({page}) =>{
         const mainPage = new MainPage(page);
         const loginPage = new LoginPage(page)
         
