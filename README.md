@@ -1,5 +1,5 @@
 # redmine-playwright-allure
-## Smoke testing Redmine 
+## Smoke testing  of [Redmine](https://www.redmine.org/) site
 5 test cases: valid, invalad registration and sign in, navigation menu checking
 
 ## 1. Install 
