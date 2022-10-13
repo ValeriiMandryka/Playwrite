@@ -1,3 +1,7 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Oct 11 08:17:44 UTC 2022","Tue Oct 11 08:17:53 UTC 2022","9135","","tests/redmine.spec.js","Smoke test","","","Clickability  of headers menu links",""
+"passed","Thu Oct 13 11:33:07 UTC 2022","Thu Oct 13 11:33:15 UTC 2022","8643","","tests/redmine.spec.js","Check clickability of header menu","","","Click  on links of header menu",""
+"passed","Thu Oct 13 11:33:21 UTC 2022","Thu Oct 13 11:33:27 UTC 2022","5501","","tests/redmine.spec.js","Password recovery","","","Submiting to recover password",""
+"passed","Thu Oct 13 11:33:15 UTC 2022","Thu Oct 13 11:33:18 UTC 2022","2887","","tests/redmine.spec.js","Search feature with valid credentials  ","","","Fill in ""Search"" field: ""wiki""",""
+"passed","Thu Oct 13 11:33:27 UTC 2022","Thu Oct 13 11:33:31 UTC 2022","4637","","tests/redmine.spec.js","Sighn in","","","Filling   inputs fields",""
 "passed","Fri Aug 05 14:30:45 UTC 2022","Fri Aug 05 14:31:09 UTC 2022","24846","chromium","redmine.spec.js","Check clickability of header menu","","","Click  on links of header menu",""
+"passed","Thu Oct 13 11:33:18 UTC 2022","Thu Oct 13 11:33:21 UTC 2022","2737","","tests/redmine.spec.js","Search feature with invalid credentials  ","","","Fill in ""Search"" field: ""***###""",""
